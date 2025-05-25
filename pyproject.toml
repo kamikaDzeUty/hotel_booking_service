@@ -7,10 +7,12 @@ package-mode = false
 
 [tool.ruff]
 line-length = 88
-target-version = ["py312"]
+target-version = "py312"
+exclude = ["project/migrations", "__pycache__", ".venv"]
+
+[tool.ruff.lint]
 select = ["E", "F", "W", "I"]
 extend-ignore = ["D401"]
-exclude = ["project/migrations", "__pycache__", ".venv"]
 
 [tool.poetry.dependencies]
 python = "^3.13"
