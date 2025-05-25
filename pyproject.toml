@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "hotel-booking-service"
+version = "0.1.0"
+description = ""
+authors = ["kamikaDzeUty <2ivan03112004@mail.ru>"]
+package-mode = false
+
+[tool.ruff]
+line-length = 88
+target-version = ["py312"]
+select = ["E", "F", "W", "I"]
+extend-ignore = ["D401"]
+exclude = ["project/migrations", "__pycache__", ".venv"]
+
+[tool.poetry.dependencies]
+python = "^3.13"
+django = "^4.2"
+djangorestframework = "^3.14"
+pydantic-settings = "^2.2"
+psycopg2-binary = "^2.9"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.4"
+pytest-django = "^4.5"
+ruff = "^0.4"
+pre-commit = "^3.7"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
