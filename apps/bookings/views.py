@@ -1,11 +1,18 @@
-from rest_framework import generics
+from rest_framework import viewsets
+
 from .models import Booking
-from .serializers import BookingSerializer
+from .serializers import BookingCreateSerializer, BookingStatusSerializer
 
-class BookingListCreateAPIView(generics.ListCreateAPIView):
-    queryset = Booking.objects.all()
-    serializer_class = BookingSerializer
 
-class BookingRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+class BookingViewSet(viewsets.ModelViewSet):
     queryset = Booking.objects.all()
-    serializer_class = BookingSerializer
+
+    def get_serializer_class(self):
+        # при создании используем проверяющий даты сериализатор
+        if self.action == "create":
+            return BookingCreateSerializer
+        # при обновлении статуса — лёгкий сериализатор только с полем status
+        if self.action in ("update", "partial_update"):
+            return BookingStatusSerializer
+        # для list и retrieve можно снова вернуть полный сериализатор
+        return BookingCreateSerializer
