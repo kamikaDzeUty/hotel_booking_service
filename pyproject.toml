@@ -5,7 +5,18 @@ description = ""
 authors = ["kamikaDzeUty <2ivan03112004@mail.ru>"]
 package-mode = false
 
+[tool.poetry.dependencies]
+python = "^3.13"
+django = "^4.2"
+djangorestframework = "^3.14"
+pydantic-settings = "^2.2"
+psycopg2-binary = "^2.9"
+python-dotenv = "^1.1.0"
+
 [tool.poetry.group.dev.dependencies]
+pytest = "^7.4"
+pytest-django = "^4.11.1"
+ruff = "^0.4.10"
 pre-commit = "^4.2.0"
 
 [tool.ruff]
@@ -16,19 +27,6 @@ exclude = ["project/migrations", "__pycache__", ".venv"]
 [tool.ruff.lint]
 select = ["E", "F", "W", "I"]
 extend-ignore = ["D401"]
-
-[tool.poetry.dependencies]
-python = "^3.13"
-django = "^4.2"
-djangorestframework = "^3.14"
-pydantic-settings = "^2.2"
-psycopg2-binary = "^2.9"
-
-[poetry.group.dev.dependencies]
-pytest = "^7.4"
-pytest-django = "^4.5"
-ruff = "^0.4"
-pre-commit = "^3.7"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
