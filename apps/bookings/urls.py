@@ -1,8 +1,8 @@
-from rest_framework.routers import SimpleRouter
+from django.urls import path
 
-from .views import BookingViewSet
+from .views import BookingListCreateAPIView, BookingRetrieveUpdateDestroyAPIView
 
-router = SimpleRouter()
-router.register(r"bookings", BookingViewSet, basename="booking")
-
-urlpatterns = router.urls
+urlpatterns = [
+    path("bookings/", BookingListCreateAPIView.as_view(), name="booking-list-create"),
+    path("bookings/<int:pk>/", BookingRetrieveUpdateDestroyAPIView.as_view(), name="booking-detail"),
+]
