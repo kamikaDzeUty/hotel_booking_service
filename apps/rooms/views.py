@@ -1,3 +1,4 @@
+# apps/rooms/views.py
 from rest_framework import filters, generics
 
 from .models import Room

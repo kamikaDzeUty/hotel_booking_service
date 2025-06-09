@@ -1,5 +1,8 @@
+# apps/bookings/models.py
 from django.db import models
+
 from apps.rooms.models import Room
+
 
 class Booking(models.Model):
     STATUS_CHOICES = [

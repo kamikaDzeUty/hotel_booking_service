@@ -72,7 +72,7 @@ ruff check --fix   # ruff + auto-fixes
 
 * `GET    /api/rooms/?ordering=price_per_night` — список комнат, сортировка по цене (asc/desc)
 * `POST   /api/rooms/` — создать комнату
-* `GET    /api/rooms/{id}/` — получить конкретную комнату
+* `GET    /api/rooms/{id}/` — получить комнату по id
 * `PUT    /api/rooms/{id}/` — полное обновление
 * `PATCH  /api/rooms/{id}/` — частичное обновление
 * `DELETE /api/rooms/{id}/` — удалить комнату

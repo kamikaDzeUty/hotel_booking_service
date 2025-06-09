@@ -13,7 +13,6 @@ def test_list_rooms_empty(api_client):
 @pytest.mark.django_db
 def test_create_retrieve_update_delete_room(api_client):
     """CRUD через POST, GET, PATCH, DELETE."""
-    # CREATE
     payload = {
         "number": "201",
         "room_type": "Suite",

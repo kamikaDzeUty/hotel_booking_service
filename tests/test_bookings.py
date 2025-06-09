@@ -24,7 +24,6 @@ def test_booking_crud_and_overlap(api_client):
     assert resp.status_code == 200
     assert resp.json() == []
 
-    # корректная бронь
     booking = api_client.post(
         "/api/bookings/",
         {

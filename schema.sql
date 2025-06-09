@@ -1,3 +1,4 @@
+#schema.sql
 -- 1) Таблица rooms_room
 CREATE TABLE IF NOT EXISTS public.rooms_room (
     id SERIAL PRIMARY KEY,

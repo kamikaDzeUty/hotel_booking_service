@@ -1,3 +1,4 @@
+# tests/conftest.py
 import pytest
 from rest_framework.test import APIClient
 

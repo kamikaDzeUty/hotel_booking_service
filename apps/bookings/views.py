@@ -1,3 +1,4 @@
+# apps/bookings/views.py
 from rest_framework import filters, generics
 from rest_framework.exceptions import ValidationError
 

@@ -1,7 +1,7 @@
+# project/settings.py
 from pathlib import Path
 
 from config.settings import Settings
-
 
 settings = Settings()
 
