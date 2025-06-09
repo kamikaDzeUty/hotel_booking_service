@@ -81,7 +81,7 @@ ruff check --fix   # ruff + auto-fixes
 
 * `GET    /api/bookings/?room={room_id}` — список броней по комнате, сортировка по дате заезда
 * `POST   /api/bookings/` — создать бронь
-* `GET    /api/bookings/{id}/` — получить бронь
+* `GET    /api/bookings/{id}/` — получить бронь по id
 * `PUT    /api/bookings/{id}/` — полное обновление
 * `PATCH  /api/bookings/{id}/` — смена статуса
 * `DELETE /api/bookings/{id}/` — удалить бронь
