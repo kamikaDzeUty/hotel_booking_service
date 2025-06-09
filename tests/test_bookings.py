@@ -214,3 +214,28 @@ def test_delete_nonexistent_booking_and_room(api_client):
     """DELETE /nonexistent → 404."""
     assert api_client.delete("/api/bookings/9999/").status_code == 404
     assert api_client.delete("/api/rooms/9999/").status_code == 404
+
+
+@pytest.mark.django_db
+def test_bookings_filter_and_order(api_client):
+    # создаём комнату
+    room = api_client.post(
+        "/api/rooms/",
+        {"number": "701", "room_type": "X", "price_per_night": "70.00", "capacity": 1, "description": ""},
+        format="json",
+    ).json()
+    room_id = room["id"]
+
+    # три бронирования с разными датами
+    dates = ["2025-10-15", "2025-09-01", "2025-11-05"]
+    for d in dates:
+        api_client.post(
+            "/api/bookings/",
+            {"room": room_id, "guest_name": "A", "check_in": d, "check_out": "2025-12-01", "status": "confirmed"},
+            format="json",
+        )
+
+    # фильтр по комнате и сортировка по check_in (по умолчанию)
+    resp = api_client.get(f"/api/bookings/?room={room_id}")
+    ci_list = [b["check_in"] for b in resp.json()]
+    assert ci_list == sorted(ci_list)

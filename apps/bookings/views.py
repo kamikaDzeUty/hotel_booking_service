@@ -1,4 +1,4 @@
-from rest_framework import generics
+from rest_framework import filters, generics
 from rest_framework.exceptions import ValidationError
 
 from .models import Booking
@@ -8,6 +8,17 @@ from .serializers import BookingSerializer
 class BookingListCreateAPIView(generics.ListCreateAPIView):
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
+
+    filter_backends = [filters.OrderingFilter]
+    ordering_fields = ["check_in"]
+    ordering = ["check_in"]
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        room_id = self.request.query_params.get("room")
+        if room_id:
+            qs = qs.filter(room_id=room_id)
+        return qs
 
     def perform_create(self, serializer):
         data = serializer.validated_data

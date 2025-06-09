@@ -86,3 +86,24 @@ def test_create_room_missing_fields(api_client):
     assert resp.status_code == 400
     body = resp.json()
     assert "number" in body  # Django вернёт ошибку по полю number
+
+
+@pytest.mark.django_db
+def test_rooms_ordering(api_client):
+    # создаём комнаты с разными ценами
+    for num, price in [("601", "60.00"), ("602", "160.00"), ("603", "110.00")]:
+        api_client.post(
+            "/api/rooms/",
+            {"number": num, "room_type": "T", "price_per_night": price, "capacity": 1, "description": ""},
+            format="json",
+        )
+
+    # по возрастанию (numeric sort)
+    resp = api_client.get("/api/rooms/?ordering=price_per_night")
+    prices = [float(r["price_per_night"]) for r in resp.json()]
+    assert prices == sorted(prices)
+
+    # по убыванию
+    resp = api_client.get("/api/rooms/?ordering=-price_per_night")
+    prices_desc = [float(r["price_per_night"]) for r in resp.json()]
+    assert prices_desc == sorted(prices_desc, reverse=True)
