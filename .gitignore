@@ -1,5 +1,14 @@
+#.gitignore
 __pycache__/
-.venv/
 *.py[cod]
+venv/
 .env
-*.sqlite3
+build/
+dist/
+*.egg-info/
+.idea/
+*.iml
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
